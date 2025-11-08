@@ -226,10 +226,10 @@ async def get_token(access_token: str):
     start_time = time.time()
     
     # Step 1: Validate token
-    if len(access_token) < 5:
+    if len(access_token) < 15:
         raise HTTPException(
             status_code=400,
-            detail="Định dạng mã thông báo không chính xác (mã thông báo phải dài ít nhất 5 ký tự)"
+            detail="Định dạng mã thông báo không chính xác (mã thông báo phải dài ít nhất 15 ký tự)"
         )
     
     # Step 2: Inspect token
@@ -248,7 +248,7 @@ async def get_token(access_token: str):
     if not open_id:
         raise HTTPException(
             status_code=400,
-            detail="Phản hồi mã thông báo không hợp lệ (không thể trích xuất open_id từ mã thông báo)"
+            detail="Phản hồi mã thông báo không hợp lệ (hãy lấy access token mới)"
         )
     
     # Step 3: Get JWT token
